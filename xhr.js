@@ -28,6 +28,7 @@ var error = function (a) {
 }
 var swap = function (res) {
     var req = new XMLHttpRequest();
+    console.log(res);
     req.open("GET", "https://rougetimelord.github.io/XHR/" +
              res.split("/").pop(), true);
     req.send(null);
