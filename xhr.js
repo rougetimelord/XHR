@@ -9,7 +9,8 @@ var addClickers = function () {
         }
     }
     else {
-        error(-1);
+        var eCode = (linkArray.length == 0) ? -1 : -2;
+        error(eCode);
     }
 }
 var attachListen = function (a) {
