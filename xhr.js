@@ -29,13 +29,12 @@ var error = function (a) {
 var swap = function (res) {
     var req = new XMLHttpRequest();
     console.log(res);
-    req.open("GET", "https://rougetimelord.github.io/XHR/" +
-             res.split("/").pop(), true);
-    req.send(null);
+    req.open("GET", res.toString(), false);
+    req.send();
     if (req.status == 200) {
         document.body.innerHTML = req.responseText;
-        addClickers();
         console.log('Success');
+        addClickers();
     }
     console.log('Failed with status ', req.status);
 }
