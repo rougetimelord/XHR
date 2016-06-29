@@ -9,34 +9,43 @@ var addClickers = function () {
         }
     }
     else {
-        error(linkArray.length);
+        error(-1);
     }
 }
 var attachListen = function (a) {
     a.addEventListener("click", function (e) {
         e.preventDefault();
         swap(a.href);
-        console.log('Blocked ', a.href, ' from loading');
+        console.log('Blocked ', a.href, ' from default');
         history.pushState(null, null, a.href);
     }, false);
 }
 var error = function (a) {
     if (!history.pushState)
-        console.log('History API is not supported')
-    if (a === 0)
-        console.log('There are no links')
+        throw('History API is not supported')
+    if (a == -1)
+        throw('There are no links')
+    else if(a == 404)
+        console.log('Resource not found');
+    else if(a == 0)
+        console.log('Empty response');
+    else if(a == 400)
+        console.log('Bad reequest')
+    else if(a == 401 || a == 403)
+        console.log('Forbidden/unauthorized');
+    else if(a >= 300)
+        console.log('Something went wrong with code ',a);
 }
 var swap = function (res) {
     var req = new XMLHttpRequest();
-    console.log(res);
-    req.open("GET", res.toString(), false);
+    req.open("GET", res, false);
     req.send();
     if (req.status == 200) {
         document.body.innerHTML = req.responseText;
-        console.log('Success');
+        console.log('Successfully fetched ', res);
         addClickers();
     }
     else {
-        console.log('Failed with status ', req.status);
+        error(req.status);
     }
 }
