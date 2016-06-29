@@ -29,7 +29,7 @@ var error = function (a) {
 var swap = function (res) {
     var req = new XMLHttpRequest();
     console.log(res);
-    req.open("GET", res.toString(), true);
+    req.open("GET", res.toString(), false);
     req.send();
     if (req.status == 200) {
         document.body.innerHTML = req.responseText;
