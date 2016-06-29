@@ -30,7 +30,7 @@ var swap = function (res) {
     var req = new XMLHttpRequest();
     console.log(res);
     req.open("GET", res.toString(), true);
-    req.send(null);
+    req.send();
     if (req.status == 200) {
         document.body.innerHTML = req.responseText;
         addClickers();
