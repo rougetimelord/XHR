@@ -28,7 +28,8 @@ var error = function (a) {
 }
 var swap = function (res) {
     var req = new XMLHttpRequest();
-    req.open("GET", res, true);
+    req.open("GET", "https://rougetimelord.github.io/XHR/" +
+             res.split("/").pop(), true);
     req.send(null);
     if (req.status == 200) {
         document.body.innerHTML = req.responseText;
