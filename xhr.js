@@ -17,7 +17,7 @@ var attachListen = function (a) {
         e.preventDefault();
         swap(a.href);
         console.log('Blocked ', a.href, ' from loading');
-        history.pushState(null, null, (a.href.indexOf("index.html") != -1 ) ? a.href : "");
+        history.pushState(null, null, a.href);
     }, false);
 }
 var error = function (a) {
@@ -36,5 +36,7 @@ var swap = function (res) {
         console.log('Success');
         addClickers();
     }
-    console.log('Failed with status ', req.status);
+    else {
+        console.log('Failed with status ', req.status);
+    }
 }
