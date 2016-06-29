@@ -33,8 +33,8 @@ var swap = function (res) {
     req.send();
     if (req.status == 200) {
         document.body.innerHTML = req.responseText;
-        addClickers();
         console.log('Success');
+        addClickers();
     }
     console.log('Failed with status ', req.status);
 }
