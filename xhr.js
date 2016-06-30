@@ -39,14 +39,21 @@ var error = function (a) {
 }
 var swap = function (res) {
     var req = new XMLHttpRequest();
-    req.open("GET", res, false);
+    req.open("GET", res, true);
+    req.timeout = 4000;
+    req.onreadystatechange = loaded(req);
     req.send();
-    if (req.status == 200) {
-        document.body.innerHTML = req.responseText;
-        console.log('Successfully fetched ', res);
-        addClickers();
-    }
-    else {
-        error(req.status);
+}
+var loaded = function(req){
+    if(req.readyState == 4)
+    {
+        if (req.status == 200 || req.status == 304) {
+            document.body.innerHTML = req.responseText;
+            console.log('Successfully fetched ', res);
+            addClickers();
+        }
+        else {
+            error(req.status);
+        }
     }
 }
