@@ -3,9 +3,8 @@ var addClickers = function () {
     var linkArray = document.getElementsByTagName('a');
     if (!!history.pushState && linkArray.length != 0) {
         console.log('Detection passed ', linkArray.length, ' link(s)');
-        for (var i = 0; i <= linkArray.length - 1; i += 1) {
-            var link = linkArray[i]
-            attachListen(link);
+        for (var i = 0; i < linkArray.length; i++) {
+            attachListen(linkArray[i]);
         }
     }
     else {
